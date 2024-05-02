@@ -1,4 +1,9 @@
+body {
+    background-color: #0a1727;
+}
+
 .RandomMangaContainer {
     display:flex;       
-    width:70%;
+    width:100vw;
+    height:50vh;
 }
