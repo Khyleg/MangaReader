@@ -7,3 +7,22 @@ body {
     width:100vw;
     height:50vh;
 }
+.custom-button {
+    background-color: #2596be;
+    border:0px;
+    color: #FFFFFF; /* white text color */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* smooth transition */
+    width:0.8rem;
+    height:2rem;
+    align-self: center;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .custom-button:hover {
+    transform: scale(1.1); /* scale up by 10% on hover */
+  }

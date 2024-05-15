@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
 import {fetchRandomManga} from "./MangaDexHelper";
 import "./RandomMangaContainer.css";
-export default function RandomMangaContainer() {
-    const [mangaInformation, GetInformation] = useState();
-    useEffect(() => {
-        fetchRandomManga()
-        .then(mangaInformation => {
-            GetInformation(mangaInformation);
-        });
-    },[]);
-    console.log(mangaInformation);
+export default function RandomMangaContainer(mangaInformationObject) {
+
+    const mangaInformation = mangaInformationObject.mangaInformation;
     if(mangaInformation) {
         return (
             <div className="container">
@@ -19,7 +13,9 @@ export default function RandomMangaContainer() {
                     <h3>{mangaInformation["summary"]}</h3>
                 </div>
                 <img src={mangaInformation["cover_url"]} width={150} height={270} />
+
             </div>
+
         )
     }
 }
