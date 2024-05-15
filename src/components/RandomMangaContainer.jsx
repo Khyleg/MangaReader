@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {fetchRandomManga} from "./MangaDexHelper";
+import {fetchRandomManga} from "../functions/MangaDexHelper";
 import "./RandomMangaContainer.css";
 export default function RandomMangaContainer(mangaInformationObject) {
 

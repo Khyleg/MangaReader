@@ -7,7 +7,7 @@ body {
     width:100vw;
     height:50vh;
 }
-.custom-button {
+.random-manga-change-left, .random-manga-change-right {
     background-color: #2596be;
     border:0px;
     color: #FFFFFF; /* white text color */

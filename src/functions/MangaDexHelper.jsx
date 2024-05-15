@@ -41,3 +41,7 @@ export const fetchFileName = (cover_id) => {
 export const fetchCoverUrl = (manga_id, file_name) => {
     return "https://uploads.mangadex.org/covers/" + manga_id + "/" + file_name;
 }
+
+export const viewManga = () => {
+    
+}
