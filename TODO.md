@@ -1,0 +1,2 @@
+#View Manga
+View Chapters
