@@ -13,7 +13,7 @@ function App() {
       <NavigationBar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/manga/:name/:age" element={<ViewManga />} />
+          <Route path="/manga/:mangaID/:mangaName" element={<ViewManga />} />
       </Routes>
     </Router>
   );

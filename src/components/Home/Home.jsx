@@ -27,14 +27,11 @@ function Home() {
         setLeftManga(mangaList[leftMangaIndex]);
         setRightManga(mangaList[rightMangaIndex]);
         setIsLoading(false);
-
-  
       };
   
       fetchRandomMangaList();
     }, []);
     const changeLeft = () => {
-      navigate("/manga/fuck");
       if(rightMangaIndex === 6)
         {
           setRightManga(randomManga[11]);

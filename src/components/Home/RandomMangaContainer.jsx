@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import {fetchRandomManga} from "D:/Nerdy Stuff/MangaSite/MangaWebsite/src/functions/MangaDexHelper";
 import "./RandomMangaContainer.css";
+import { useNavigate } from "react-router-dom";
 export default function RandomMangaContainer(mangaInformationObject) {
-
+    const navigate = useNavigate();
     const browseTitle = (manga) =>
         {
             console.log("Clicked: ", manga["en_title"]);
             console.log("ID: ", manga["manga_id"]);
+            navigate(`/manga/${manga["manga_id"]}/${manga["en_title"]}}`);
+
+            
         }
     const mangaInformation = mangaInformationObject.mangaInformation;
     if(mangaInformation) {
