@@ -2,9 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import RandomMangaContainer from "./RandomMangaContainer";
 import { fetchRandomManga } from "../../functions/MangaDexHelper";
+import SkeletonLoader from "./SkeletonLoader";
+import "./Home.css";
 function Home() {
+
+
+
     const navigate = useNavigate();
-  
+    const [isLoading, setIsLoading] = useState(true);
+
     const [randomManga, setRandomManga] = useState(null);
     const [leftMangaInformation, setLeftManga] = useState(null);
     const [rightMangaInformation, setRightManga] = useState(null);
@@ -14,16 +20,14 @@ function Home() {
       const fetchRandomMangaList = async () => {
         const mangaList = [];
         for (let i = 0; i < 12; i++) {
-          
           const mangaInformation = await fetchRandomManga();
-          if(i === 0) {
-           setLeftManga(mangaInformation);
-          }
           mangaList.push(mangaInformation);
         }
         setRandomManga(mangaList);
         setLeftManga(mangaList[leftMangaIndex]);
         setRightManga(mangaList[rightMangaIndex]);
+        setIsLoading(false);
+
   
       };
   
@@ -83,6 +87,14 @@ function Home() {
         console.log("Current Left Value: ", leftMangaIndex);
         console.log("Current Right Value: ", rightMangaIndex);  
       };
+      if (isLoading) {
+        return (
+            <div className="random-skeletons">
+              <SkeletonLoader />
+              <SkeletonLoader />
+            </div>
+        );
+      }
     return(
       
       <div className="RandomMangaContainer">

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import RandomMangaContainer from "./components/Home/RandomMangaContainer.jsx";
 import { fetchRandomManga } from "./functions/MangaDexHelper.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import ViewManga from "./components/Manga/ViewManga.jsx";
 import "./App.css";
 import Home from "./components/Home/Home.jsx";
@@ -14,7 +13,7 @@ function App() {
       <NavigationBar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/manga/:name" element={<ViewManga />} />
+          <Route path="/manga/:name/:age" element={<ViewManga />} />
       </Routes>
     </Router>
   );
