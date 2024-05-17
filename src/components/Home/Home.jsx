@@ -8,7 +8,6 @@ function Home() {
 
 
 
-    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
 
     const [randomManga, setRandomManga] = useState(null);

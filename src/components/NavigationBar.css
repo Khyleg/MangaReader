@@ -14,7 +14,9 @@
     padding: 20px;
     
 }
-
+.logo-text{
+    padding-top: 5px;
+}
 .navigation_bar button {
     background-color: transparent;
     border: none;

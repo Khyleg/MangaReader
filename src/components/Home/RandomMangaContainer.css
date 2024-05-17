@@ -10,8 +10,23 @@
     border: 1px solid #73b2d4;
     border-width: 0 0 0 8px;
     border-radius: 10px;
-    overflow: hidden; /* Hide any overflowing text */
+    overflow: auto; /* Hide any overflowing text */
 
+}
+.container::-webkit-scrollbar {
+    width: 12px;  /* Adjust the width of the scrollbar */
+    height: 8px; /* Adjust the height of the scrollbar */
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent; /* Background of the scrollbar track */
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: white; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Round the scrollbar thumb corners */
+    border: 2px solid transparent; /* Optional: adds space around thumb */
+    background-clip: padding-box; /* Optional: clips the background */
 }
 .manga_title {
     background-color: transparent;
