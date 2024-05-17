@@ -7,5 +7,6 @@ Errr just making a MangaReader app using React and MangaDex Api
 - Latest updated manga
 - Latest manga
 - Search Manga
-- 
+- Most viewed Manga
+
 

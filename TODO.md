@@ -5,4 +5,4 @@
 - Latest updated manga
 - Latest manga
 - Search Manga
-- 
+- Most viewed Manga
