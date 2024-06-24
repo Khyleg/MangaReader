@@ -10,8 +10,8 @@ function SearchManga() {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const ViewManga = (mangaID, mangaTitle) => {
-        navigate(`/manga/${mangaID}/${mangaTitle}`);
+    const ViewManga = (mangaID, mangaTitle, mangaCover) => {
+        navigate(`/manga/${mangaID}/${mangaTitle}/${mangaCover}`);
     }
     useEffect(() => {
         const fetchManga = async () => {
@@ -26,16 +26,16 @@ function SearchManga() {
                 await Promise.all(data.data.map(async(manga) => {
                     const mangaID = manga.id;
                     const coverID = manga.relationships[2].id;
-                    console.log(`Fetching: https://api.mangadex.org/cover/${coverID}`);
+                    // console.log(`Fetching: https://api.mangadex.org/cover/${coverID}`);
                     try {
                         const response_1 = await fetch(`https://api.mangadex.org/cover/${coverID}`);
                         const filename_data = await response_1.json();
                         const fileName = filename_data.data.attributes.fileName;
-                        const coverUrl = `https://uploads.mangadex.org/covers/${mangaID}/${fileName}`;
+                        const coverUrl = fileName;
                         mangaCovers.push(coverUrl);
                     }catch (coverError) {
                         console.error(`Failed to fetch cover for manga ID ${mangaID}:`, coverError);
-                        mangaCovers.push(null); // Push null or a placeholder if fetch fails
+                        mangaCovers.push("None"); // Push null or a placeholder if fetch fails
                     }
                     return null; // As map requires a return statement, return null
                 })
@@ -71,8 +71,8 @@ function SearchManga() {
                 {manga ? (
                     manga.map((manga, index) => (
                         <div className="manga" key={manga.id}>
-                            <img src={covers[index]}></img>
-                            <button className='titleButton' onClick={() => ViewManga(manga.id, manga.attributes.title.en)}>{manga.attributes.title.en}</button>
+                            <img src={`https://uploads.mangadex.org/covers/${manga.id}/${covers[index]}`}></img>
+                            <button className='titleButton' onClick={() => ViewManga(manga.id, manga.attributes.title.en, covers[index])}>{manga.attributes.title.en}</button>
                         </div>
                         
                         

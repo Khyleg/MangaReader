@@ -45,3 +45,12 @@ export const fetchCoverUrl = (manga_id, file_name) => {
 export const viewManga = () => {
     
 }
+
+export const fetchMangaChapters = (manga_id)  => {
+    console.log(`Fetching chapters of https://api.mangadex.org/manga/${manga_id}/feed`);
+    return fetch(`https://api.mangadex.org/manga/${manga_id}/feed?limit=500&order[createdAt]=asc&order[updatedAt]=asc&order[publishAt]=asc&order[readableAt]=asc&order[volume]=asc&order[chapter]=asc`)
+        .then(response => response.json())
+        .then(data => {
+            return data.data;
+        })
+}

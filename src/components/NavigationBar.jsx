@@ -21,7 +21,7 @@ export default function NavigationBar() {
         }
     return(
         <div className="navigation_bar">
-            <img className="logo"   src="./src/assets/logo.png" alt="Logo" width="50px" height ="50px" />
+            <img className="logo"   src="../src/assets/logo.png" alt="Logo" width="50px" height ="50px" />
             <h1 className="logo-text">
                 <span style={{ color: 'orange' }}>M</span>anga
                 <span style={{ color: 'orange' }}>R</span>eader

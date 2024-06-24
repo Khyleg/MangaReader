@@ -1,9 +1,59 @@
 import { useParams } from 'react-router-dom';
-
+import './ViewManga.css';
+import { fetchMangaChapters } from '../../functions/MangaDexHelper';
+import { useEffect, useState } from 'react';
 function ViewManga() {
-    const { mangaID,mangaName } = useParams();
+    const { mangaID,mangaName, mangaCover } = useParams();
+    const [chapters, setChapters] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetchMangaChapters(mangaID)
+            .then(data => {
+                console.log(data);
+                setChapters(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error fetching data: {error.message}</div>;
     return(
-        <h1>Hello {mangaID}{mangaName}</h1>
+        <>
+            <div className="MangaView">
+                <div className="manga-details">
+                    <div className="cover">
+                        <img src={`https://uploads.mangadex.org/covers/${mangaID}/${mangaCover}`}></img>
+                    </div>
+                    <div className="title">
+                        <h1>{mangaName}</h1>
+                        <p>Genre: Lorem ipsum dolor sit amet, consectetur adipisicing elit. A maiores ea cupiditate sip</p>
+                        <p>----------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                        <p>Alternate Name</p>
+                        <p>----------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                        <p>Type</p>
+                        <p>----------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                        <p>Released:</p>
+                        <p>----------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                        <p>Status</p>
+                        <p>----------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                        <p>Description</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos doloremque id, perspiciatis sequi soluta exercitationem ex iure quae dolore vel dolores eius placeat. Officia maiores ullam, iusto dolore est consequuntur!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates quia, cumque veniam inventore neque repudiandae reprehenderit porro deleniti ipsum consequatur, consequuntur ullam at? Quos quasi distinctio necessitatibus, voluptatem quod veritatis?</p>
+                    </div>
+                </div>
+                <div className="manga-chapters">
+                        {chapters.map((chaps,index) => (
+                            <h3>Chapter {chaps.attributes.chapter}</h3>
+                        ))};
+                </div>
+            </div>
+        </>
     )
 };
 

@@ -8,7 +8,7 @@ export default function RandomMangaContainer(mangaInformationObject) {
         {
             console.log("Clicked: ", manga["en_title"]);
             console.log("ID: ", manga["manga_id"]);
-            navigate(`/manga/${manga["manga_id"]}/${manga["en_title"]}}`);
+            // navigate(`/manga/${manga["manga_id"]}/${manga["en_title"]}}`);
 
         }
     
