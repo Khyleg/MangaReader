@@ -1,0 +1,18 @@
+.result{
+    display:flex;
+    flex-wrap: wrap;
+}
+.manga {
+    margin: 10px;
+    width: 300px;
+    height:400px;
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.manga img {
+    width: 100%;
+    height: 100%;
+}

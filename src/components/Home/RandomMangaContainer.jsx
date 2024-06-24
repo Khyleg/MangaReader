@@ -10,18 +10,19 @@ export default function RandomMangaContainer(mangaInformationObject) {
             console.log("ID: ", manga["manga_id"]);
             navigate(`/manga/${manga["manga_id"]}/${manga["en_title"]}}`);
 
-            
         }
+    
     const mangaInformation = mangaInformationObject.mangaInformation;
+    console.log(mangaInformation);
     if(mangaInformation) {
         return (
             <div className="container">
+                <img src={mangaInformation["cover_url"]} width={150} height={270} />
                 <div className="description-text">
                     <button className="manga_title" onClick={() => browseTitle(mangaInformation)}>{mangaInformation["en_title"]}</button>
-                    <br></br><br></br><br></br>
+                     <br></br>
                     <h3>{mangaInformation["summary"]}</h3>
                 </div>
-                <img src={mangaInformation["cover_url"]} width={150} height={270} />
 
             </div>
 

@@ -7,17 +7,16 @@
 .navigation_bar {
     display:flex;
     flex-direction: row;
-    background-color: #0a1726;
-    border: 0px solid white;
-    border-bottom-width: 1px;
-    color:white;
+    background-color: #ffffff;
+    box-shadow: 10px 1px 5px rgba(0, 0, 0, 0.5);
     padding: 20px;
     
 }
 .logo-text{
     padding-top: 5px;
+    color:black;
 }
-.navigation_bar button {
+.navigation_buttons {
     background-color: transparent;
     border: none;
     color:white;
@@ -26,10 +25,22 @@
 }
 
 .manga_search {
-    border-radius: 15px;
-    border-color:transparent;
-    width:500px;
+    border:1px solid black;
+    width:300px;
     padding-left:10px;  
     justify-content: end;
-    margin-left: auto;
+    margin-left: 50px;
+}
+.search_button {
+    border-radius: 10px;
+    background-color: #ff922b;
+    color:white;
+    border:0px;
+    margin-left: 30px;
+    padding:5px 20px 5px 20px;
+    font-size: 1.1rem;
+}
+
+.search_button:hover{
+    scale:1.1;
 }

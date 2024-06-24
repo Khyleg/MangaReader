@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ViewManga from "./components/Manga/ViewManga.jsx";
 import "./App.css";
 import Home from "./components/Home/Home.jsx";
+import SearchManga from "./components/Manga/SearchManga.jsx";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/manga/:mangaID/:mangaName" element={<ViewManga />} />
+          <Route path="/search/:searchQuery/" element={<SearchManga />} />
+
       </Routes>
     </Router>
   );
