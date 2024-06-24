@@ -32,12 +32,11 @@ function SearchManga() {
                         const filename_data = await response_1.json();
                         const fileName = filename_data.data.attributes.fileName;
                         const coverUrl = fileName;
-                        mangaCovers.push(coverUrl);
+                        mangaCovers.push(`https://uploads.mangadex.org/covers/${manga.id}/${fileName}`);
                     }catch (coverError) {
                         console.error(`Failed to fetch cover for manga ID ${mangaID}:`, coverError);
                         mangaCovers.push("None"); // Push null or a placeholder if fetch fails
                     }
-                    return null; // As map requires a return statement, return null
                 })
             );
                     // console.log(data.data);
@@ -71,10 +70,9 @@ function SearchManga() {
                 {manga ? (
                     manga.map((manga, index) => (
                         <div className="manga" key={manga.id}>
-                            <img src={`https://uploads.mangadex.org/covers/${manga.id}/${covers[index]}`}></img>
+                            <img src={covers[index]}></img>
                             <button className='titleButton' onClick={() => ViewManga(manga.id, manga.attributes.title.en, covers[index])}>{manga.attributes.title.en}</button>
                         </div>
-                        
                         
                         ))
                 ) : (
