@@ -9,7 +9,6 @@ export const fetchRandomManga = () => {
             return fetchFileName(cover_id)
                 .then(fileName => {
                     const cover_url = fetchCoverUrl(manga_id, fileName);
-                    console.log("Fetching Cover of Manga: " + en_title + " with cover link: " + cover_url);
                     const MangaInformation = {
                         "en_title": en_title,
                         "cover_id": cover_id,
@@ -30,7 +29,6 @@ export const fetchFileName = (cover_id) => {
     return fetch("https://api.mangadex.org/cover/" + cover_id)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             return data.data.attributes.fileName;
         })
         .catch(error => {
@@ -47,7 +45,6 @@ export const viewManga = () => {
 }
 
 export const fetchMangaChapters = (manga_id)  => {
-    console.log(`Fetching chapters of https://api.mangadex.org/manga/${manga_id}/feed`);
     return fetch(`https://api.mangadex.org/manga/${manga_id}/feed?limit=500&order[createdAt]=asc&order[updatedAt]=asc&order[publishAt]=asc&order[readableAt]=asc&order[volume]=asc&order[chapter]=asc`)
         .then(response => response.json())
         .then(data => {

@@ -7,7 +7,7 @@ function SearchManga() {
     const { searchQuery } = useParams();
     const [manga, setManga] = useState(null);
     const [covers, setCover] = useState(null);
-
+    const [filenames, setFileName] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const ViewManga = (mangaID, mangaTitle, mangaCover) => {
@@ -23,30 +23,29 @@ function SearchManga() {
                 }
                 const data = await response.json();
                 const mangaCovers = [];
+                const coverFileName = [];
+
                 await Promise.all(data.data.map(async(manga) => {
                     const mangaID = manga.id;
                     const coverID = manga.relationships[2].id;
-                    // console.log(`Fetching: https://api.mangadex.org/cover/${coverID}`);
                     try {
                         const response_1 = await fetch(`https://api.mangadex.org/cover/${coverID}`);
                         const filename_data = await response_1.json();
                         const fileName = filename_data.data.attributes.fileName;
                         const coverUrl = fileName;
-                        mangaCovers.push(`https://uploads.mangadex.org/covers/${manga.id}/${fileName}`);
+                        mangaCovers.push(`${manga.id}/${fileName}`);
+                        coverFileName.push(fileName);
                     }catch (coverError) {
                         console.error(`Failed to fetch cover for manga ID ${mangaID}:`, coverError);
                         mangaCovers.push("None"); // Push null or a placeholder if fetch fails
                     }
                 })
             );
-                    // console.log(data.data);
-                // console.log("Manga ID: ", mangaID);
-                // console.log(coverID);
                 setManga(data.data);
                 setCover(mangaCovers);
+                setFileName(coverFileName);
             } catch (error) {
                 setError(error);
-                console.log(error);
             } finally {
                 setLoading(false);
             }
@@ -70,7 +69,7 @@ function SearchManga() {
                 {manga ? (
                     manga.map((manga, index) => (
                         <div className="manga" key={manga.id}>
-                            <img src={covers[index]}></img>
+                            <img src={`https://uploads.mangadex.org/covers/${covers[index]}`}></img>
                             <button className='titleButton' onClick={() => ViewManga(manga.id, manga.attributes.title.en, covers[index])}>{manga.attributes.title.en}</button>
                         </div>
                         

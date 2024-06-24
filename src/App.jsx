@@ -14,7 +14,7 @@ function App() {
       <NavigationBar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/manga/:mangaID/:mangaName/:mangaCover" element={<ViewManga />} />
+          <Route path="/manga/:mangaID/:mangaName/:mangaCover/:coverFileName" element={<ViewManga />} />
           <Route path="/search/:searchQuery/" element={<SearchManga />} />
 
       </Routes>

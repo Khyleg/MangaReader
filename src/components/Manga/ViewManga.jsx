@@ -3,15 +3,13 @@ import './ViewManga.css';
 import { fetchMangaChapters } from '../../functions/MangaDexHelper';
 import { useEffect, useState } from 'react';
 function ViewManga() {
-    const { mangaID,mangaName, mangaCover } = useParams();
+    const { mangaID,mangaName, mangaCover, coverFileName } = useParams();
     const [chapters, setChapters] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     useEffect(() => {
         fetchMangaChapters(mangaID)
             .then(data => {
-                console.log(data);
                 setChapters(data);
                 setLoading(false);
             })
@@ -28,7 +26,7 @@ function ViewManga() {
             <div className="MangaView">
                 <div className="manga-details">
                     <div className="cover">
-                        <img src={`https://uploads.mangadex.org/covers/${mangaID}/${mangaCover}`}></img>
+                        <img src={`https://uploads.mangadex.org/covers/${mangaCover}/${coverFileName}`}></img>
                     </div>
                     <div className="title">
                         <h1>{mangaName}</h1>

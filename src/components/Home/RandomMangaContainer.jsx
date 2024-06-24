@@ -6,14 +6,11 @@ export default function RandomMangaContainer(mangaInformationObject) {
     const navigate = useNavigate();
     const browseTitle = (manga) =>
         {
-            console.log("Clicked: ", manga["en_title"]);
-            console.log("ID: ", manga["manga_id"]);
             // navigate(`/manga/${manga["manga_id"]}/${manga["en_title"]}}`);
 
         }
     
     const mangaInformation = mangaInformationObject.mangaInformation;
-    console.log(mangaInformation);
     if(mangaInformation) {
         return (
             <div className="container">
