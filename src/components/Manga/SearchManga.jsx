@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./SearchManga.css";
 
 function SearchManga() {
+    const navigate = useNavigate();
     const { searchQuery } = useParams();
     const [manga, setManga] = useState(null);
     const [covers, setCover] = useState(null);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const ViewManga = (mangaID, mangaTitle) => {
+        navigate(`/manga/${mangaID}/${mangaTitle}`);
+    }
     useEffect(() => {
         const fetchManga = async () => {
             const title = searchQuery; // Use the dynamic search query
@@ -60,7 +63,7 @@ function SearchManga() {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-
+    
     return (
         <>
             <h1>Search Results for: {searchQuery}</h1>
@@ -69,7 +72,7 @@ function SearchManga() {
                     manga.map((manga, index) => (
                         <div className="manga" key={manga.id}>
                             <img src={covers[index]}></img>
-                            {manga.attributes.title.en}
+                            <button className='titleButton' onClick={() => ViewManga(manga.id, manga.attributes.title.en)}>{manga.attributes.title.en}</button>
                         </div>
                         
                         
