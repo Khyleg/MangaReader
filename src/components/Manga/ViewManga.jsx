@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ViewManga.css';
 import { fetchMangaChapters } from '../../functions/MangaDexHelper';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,12 @@ function ViewManga() {
     const [chapters, setChapters] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    const ViewChap = (chapterID) => {
+        console.log("Selected chap ID", chapterID);
+        navigate(`/chapter/${chapterID}`);
+
+    }
     useEffect(() => {
         fetchMangaChapters(mangaID)
             .then(data => {
@@ -46,8 +52,8 @@ function ViewManga() {
                     </div>
                 </div>
                 <div className="manga-chapters">
-                        {chapters.map((chaps,index) => (
-                            <h3>Chapter {chaps.attributes.chapter}</h3>
+                        {chapters.map((chaps) => (
+                            <h3 onClick={() => ViewChap(chaps.id)}>Chapter {chaps.attributes.chapter}</h3>
                         ))};
                 </div>
             </div>

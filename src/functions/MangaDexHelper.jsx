@@ -29,6 +29,7 @@ export const fetchFileName = (cover_id) => {
     return fetch("https://api.mangadex.org/cover/" + cover_id)
         .then(response => response.json())
         .then(data => {
+            
             return data.data.attributes.fileName;
         })
         .catch(error => {
@@ -45,9 +46,18 @@ export const viewManga = () => {
 }
 
 export const fetchMangaChapters = (manga_id)  => {
-    return fetch(`https://api.mangadex.org/manga/${manga_id}/feed?limit=500&order[createdAt]=asc&order[updatedAt]=asc&order[publishAt]=asc&order[readableAt]=asc&order[volume]=asc&order[chapter]=asc`)
+    return fetch(`https://api.mangadex.org/manga/${manga_id}/feed?limit=500&order[createdAt]=asc&order[updatedAt]=asc&order[publishAt]=asc&order[readableAt]=asc&order[volume]=asc&order[chapter]=asc&translatedLanguage[]=en`)
         .then(response => response.json())
         .then(data => {
             return data.data;
         })
+}
+
+export const fetchChaptersImages = (chapter_id) => {
+    return fetch(`https://api.mangadex.org/at-home/server/${chapter_id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.chapter.data);
+            return data.chapter.data;
+    })
 }

@@ -7,6 +7,7 @@ import ViewManga from "./components/Manga/ViewManga.jsx";
 import "./App.css";
 import Home from "./components/Home/Home.jsx";
 import SearchManga from "./components/Manga/SearchManga.jsx";
+import ViewChapter from "./components/Manga/ViewChapter.jsx";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/manga/:mangaID/:mangaName/:mangaCover/:coverFileName" element={<ViewManga />} />
           <Route path="/search/:searchQuery/" element={<SearchManga />} />
+          <Route path="/chapter/:chapterID/" element={<ViewChapter />} />
+
 
       </Routes>
     </Router>
