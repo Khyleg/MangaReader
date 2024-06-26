@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/manga/:mangaID/:mangaName/:mangaCover/:coverFileName" element={<ViewManga />} />
           <Route path="/search/:searchQuery/" element={<SearchManga />} />
-          <Route path="/chapter/:chapterID/" element={<ViewChapter />} />
+          <Route path="/:mangaID/chapter/:chapterID/" element={<ViewChapter />} />
 
 
       </Routes>

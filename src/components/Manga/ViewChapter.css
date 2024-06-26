@@ -1,0 +1,18 @@
+.viewed_chapter {
+    margin:10px;
+    justify-content: center;
+    text-align: center;
+}
+.viewed_chapter button{
+    background-color: #FF922B;
+    border:none;
+    padding:15px;
+    border-radius: 5px;
+    color:white;
+    margin: 0px 10px 0px 10px;
+}
+
+.viewed_chapter .chapterImages{
+    justify-content: center;
+    text-align: center;
+}

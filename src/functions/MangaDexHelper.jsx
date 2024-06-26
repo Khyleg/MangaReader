@@ -57,7 +57,6 @@ export const fetchChaptersImages = (chapter_id) => {
     return fetch(`https://api.mangadex.org/at-home/server/${chapter_id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data.chapter.data);
-            return data.chapter.data;
+            return [data.chapter.hash, data.chapter.data];
     })
 }

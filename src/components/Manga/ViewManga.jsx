@@ -10,7 +10,7 @@ function ViewManga() {
     const navigate = useNavigate();
     const ViewChap = (chapterID) => {
         console.log("Selected chap ID", chapterID);
-        navigate(`/chapter/${chapterID}`);
+        navigate(`/${mangaID}/chapter/${chapterID}`);
 
     }
     useEffect(() => {
