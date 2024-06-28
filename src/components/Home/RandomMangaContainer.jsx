@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useEffect, useState } from "react";
 import {fetchRandomManga} from "D:/Nerdy Stuff/MangaSite/MangaWebsite/src/functions/MangaDexHelper";
 import "./RandomMangaContainer.css";

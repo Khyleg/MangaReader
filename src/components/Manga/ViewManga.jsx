@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useNavigate, useParams } from 'react-router-dom';
 import './ViewManga.css';
 import { fetchMangaChapters } from '../../functions/MangaDexHelper';
