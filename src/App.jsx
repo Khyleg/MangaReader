@@ -11,10 +11,10 @@ import ViewChapter from "./components/Manga/ViewChapter.jsx";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/MangaReader">
       <NavigationBar />
       <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/MangaReader" element={<Home />} />
           <Route path="/manga/:mangaID/:mangaName/:mangaCover/:coverFileName" element={<ViewManga />} />
           <Route path="/search/:searchQuery/" element={<SearchManga />} />
           <Route path="/:mangaID/chapter/:chapterID/" element={<ViewChapter />} />
