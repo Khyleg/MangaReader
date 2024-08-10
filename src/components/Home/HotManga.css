@@ -1,0 +1,10 @@
+.hotMangaContainer {
+    display:flex;
+}
+.hotManga img {
+    width:15vw;
+    height:30vh;
+}
+.hotManga p{
+    max-width: 15vw;
+}

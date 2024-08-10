@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(cors());
-app.get("/", async (req, res) =>{
+app.get("/scrapehot", async (req, res) =>{
     try {
 
     
@@ -14,7 +14,7 @@ app.get("/", async (req, res) =>{
         await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
 
         await page.goto("https://manga4life.com/search/?sort=vm&desc=true", {waitUntil: 'networkidle2'});
-        await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+        // await page.evaluate(() => window.scrollBy(0, window.innerHeight));
 
         const hotManga = await page.evaluate(() => {
             const titlesContainer = document.querySelectorAll(".SeriesName.ng-binding");
