@@ -1,13 +1,16 @@
 import React from 'react'
 
-import { useState, useEffect } from "react";
 import "./Home.css";
 import HotManga from './HotManga';
+import LatestUpdates from './LatestUpdates';
 function Home() {
   
 
   return (
-    <HotManga></HotManga>
+    <>
+      <HotManga></HotManga>
+      <LatestUpdates></LatestUpdates>
+    </>
   );
 }
 
