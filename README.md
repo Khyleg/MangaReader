@@ -1,5 +1,5 @@
 # Manga Reader
-Errr just making a MangaReader app using React and MangaDex Api
+Errr just making a MangaReader app using React and Node i guess?
 # TODO
 - View Manga(Click, searched)
 - Login(Mangadex' account for API key)
