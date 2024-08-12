@@ -17,12 +17,14 @@ app.get("/scrapehot", async (req, res) =>{
         const hotManga = await page.evaluate(() => {
             const titlesContainer = document.querySelectorAll(".SeriesName.ng-binding");
             const thumbnailContainer = document.querySelectorAll("a.SeriesName img");
+            const mangaContainer = document.querySelectorAll("a.SeriesName.ng-binding");
             const manga = [];
             titlesContainer.forEach((title, index) => {
                 const titleText = title.innerText;
                 manga.push({
                     title: titleText,
-                    thumbnail: thumbnailContainer[index].src
+                    thumbnail: thumbnailContainer[index].src,
+                    mangaLink: mangaContainer[index].getAttribute("href")
                 });
             });
             return manga;
@@ -78,6 +80,23 @@ app.get("/scrapelatest", async (req, res) => {
     await browser.close();
     res.json(latestChapters);
 });
+
+app.get("/scrapemanga", async(req, res) => {
+    const mangaUrl = "https://manga4life.com/" + req.query.path;
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+    await page.goto(mangaUrl, { waitUntil: 'networkidle2' });
+    const manga = await page.evaluate(() => {
+        const description = [];
+        const descriptionClass = document.querySelectorAll(".top-5.Content");
+        descriptionClass.forEach((item, index) => {
+            description.push(item.innerText);
+        });
+        return description
+    })
+    res.json(manga);
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);
