@@ -86,16 +86,26 @@ app.get("/scrapemanga", async(req, res) => {
         // await page.waitForTimeout(1000); // Adjust the timeout as needed
       }
     const manga = await page.evaluate(() => {
-        const description = [];
+        const manga = [];
         const descriptionClass = document.querySelectorAll(".top-5.Content");
+        const mangaInfo = document.querySelectorAll(".list-group-item.d-none.d-md-block");
         const chapters = document.querySelectorAll('.list-group-item.ChapterLink.ng-scope');
+        const thumbnail = document.querySelector(".img-fluid.bottom-5");
+        const manga_chapters = [];
+        mangaInfo.forEach((item, index) => {
+            manga.push(item.innerText);
+        });
+        manga.push({
+            thumbnail: thumbnail.getAttribute("src")
+        })
         chapters.forEach((item, index) => {
-            description.push(item.innerText);
+            manga_chapters.push(item.innerText);
         });
-        descriptionClass.forEach((item, index) => {
-            description.push(item.innerText);
-        });
-        return description
+        manga.push({
+            Chapters: manga_chapters
+        })
+        
+        return manga
     })
 
     res.json(manga);
