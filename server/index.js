@@ -1,3 +1,5 @@
+const {newPagePuppeteer, closePuppeteer} = require('./InitializePuppeteer');
+
 const express = require("express");
 const puppeteer = require("puppeteer");
 const cors = require("cors");
@@ -7,9 +9,7 @@ const PORT = 3000;
 app.use(cors());
 app.get("/scrapehot", async (req, res) =>{
     try {
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+        const page = await newPagePuppeteer();
 
         await page.goto("https://manga4life.com/search/?sort=vm&desc=true", {waitUntil: 'networkidle2'});
         // await page.evaluate(() => window.scrollBy(0, window.innerHeight));
@@ -30,7 +30,6 @@ app.get("/scrapehot", async (req, res) =>{
             return manga;
         })
 
-        await browser.close();
         res.json(hotManga);
     }
     catch(error) {
@@ -41,9 +40,7 @@ app.get("/scrapehot", async (req, res) =>{
 });
 
 app.get("/scrapelatest", async (req, res) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+    const page = await newPagePuppeteer();
     await page.goto("https://manga4life.com/", { waitUntil: 'networkidle2' });
     
     const latestChapters = await page.evaluate(() => {
@@ -77,24 +74,30 @@ app.get("/scrapelatest", async (req, res) => {
         return chapsList;
     });
 
-    await browser.close();
     res.json(latestChapters);
 });
 
 app.get("/scrapemanga", async(req, res) => {
     const mangaUrl = "https://manga4life.com/" + req.query.path;
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+    const page = await newPagePuppeteer();
     await page.goto(mangaUrl, { waitUntil: 'networkidle2' });
+    while (await page.$('.list-group-item.ShowAllChapters.ng-scope')) {
+        await page.click('.list-group-item.ShowAllChapters.ng-scope');
+        // await page.waitForTimeout(1000); // Adjust the timeout as needed
+      }
     const manga = await page.evaluate(() => {
         const description = [];
         const descriptionClass = document.querySelectorAll(".top-5.Content");
+        const chapters = document.querySelectorAll('.list-group-item.ChapterLink.ng-scope');
+        chapters.forEach((item, index) => {
+            description.push(item.innerText);
+        });
         descriptionClass.forEach((item, index) => {
             description.push(item.innerText);
         });
         return description
     })
+
     res.json(manga);
 })
 
