@@ -1,9 +1,15 @@
 
-.Hot-Manga h1{
-    padding-left: 45px;
-    font-family: "Inter", sans-serif;
-    color:#FF7A00;
-    font-weight: 900;
+body{
+
+}
+.Hot-Manga{
+    margin: 0 40px 0px 40px;
+}
+.Hot-Manga h2{
+    font-family: "Poppins", sans-serif;
+    color:white;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 10, 20, 0.5);
  }
  .previous-page, .next-page {
     width:70px;
@@ -14,13 +20,20 @@
     display:flex;
     align-items: center;
     text-align: center;
+    margin-top:10px;
+    margin-left:10px;
+    margin-right: 10px;
+
 }
 .hotManga{
-    padding-left: 10px;
+    width:150px;
+    height:250px;
+
 }
 .hotManga img {
-    width:10vw;
-    height:30vh;
+    width:144px;
+    height:204px;
+    box-shadow: 0px 0px 15px 1px rgba(79, 44, 9, 1);
 }
 .hotManga p{
     max-width: 15vw;

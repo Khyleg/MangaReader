@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function HotManga() {
     const [manga, setManga] = useState([]);
     const [leftIndex, setLeftIndex] = useState(0);
-    const [rightIndex, setRightIndex] = useState(8);
+    const [rightIndex, setRightIndex] = useState(7);
     const navigate = useNavigate(); // Hook usage at the top level of the component
 
     useEffect(() => {
@@ -46,16 +46,16 @@ function HotManga() {
 
     return (
         <div className="Hot-Manga">
-            <h1>Hot Manga</h1>
+            <h2>Popular Today </h2>
             <div className="hotMangaContainer">
-                <img className="previous-page" src={previousPageIcon} onClick={handleLeft} alt="Previous Page" />
+                {/* <img className="previous-page" src={previousPageIcon} onClick={handleLeft} alt="Previous Page" /> */}
                 {hotMangaList.map((item, index) => (
                     <div className="hotManga" key={index}>
                         <img src={item.thumbnail} alt={item.title} />
                         <button onClick={() => clickManga(item.mangaLink)}>{item.title}</button>
                     </div>
                 ))}
-                <img className="next-page" src={nextPageIcon} onClick={handleRight} alt="Next Page" />
+                {/* <img className="next-page" src={nextPageIcon} onClick={handleRight} alt="Next Page" /> */}
             </div>
         </div>
     );

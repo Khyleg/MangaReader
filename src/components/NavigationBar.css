@@ -1,35 +1,49 @@
 * {
     margin: 0;
     padding:0;
+    font-family: 'Poppins', sans-serif;
 }
 
 
 .navigation_bar {
     display:flex;
     flex-direction: row;
-    background-color: #ffffff;
     box-shadow: 10px 1px 5px rgba(0, 0, 0, 0.5);
     padding: 20px;
     
 }
 .logo-text{
     padding-top: 5px;
-    color:black;
+    color:white;
 }
 .navigation_buttons {
     background-color: transparent;
     border: none;
     color:white;
     padding-left: 30px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .manga_search {
-    border:1px solid black;
-    width:300px;
+    width:270px;
+    height:30px;
     padding-left:10px;  
     justify-content: end;
-    margin-left: 50px;
+    margin-left: 200px;
+    margin-top:10px;
+    background-color: hsl(260, 13%, 9%);
+    border:0px;
+    border-radius: 10px;
+}
+.navigation_buttons{
+    font-weight: 500;
+
+}
+.navigation_buttons:hover{
+    color:red;
+}
+.manga_search::placeholder{
+    color:white;
 }
 .search_button {
     border-radius: 10px;
