@@ -11,7 +11,7 @@ function LatestUpdates() {
     })
     return(
         <div className="Latest-Manga">
-            <h1>Recently updated</h1>
+            <h2>Recently updated</h2>
             <div className="Latest-Manga-Container">
                 {manga.map((item, index) =>(
                     <div className="manga">
