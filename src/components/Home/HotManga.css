@@ -38,8 +38,23 @@ body{
     border-radius: 5px;
 }
 
+.hotManga img:hover{
+    opacity: 0.5;
+}
+.hotManga img:hover + button{
+    color:red;
+}
+
 .hotManga button{
     background-color: transparent;
+    color:#DDDDDD;
+    border:0px;
+    font-size:17px;
+
+}
+
+.hotManga button:hover{
+    color:red;
 }
 .hotManga p{
     max-width: 15vw;

@@ -51,7 +51,7 @@ function HotManga() {
                 {/* <img className="previous-page" src={previousPageIcon} onClick={handleLeft} alt="Previous Page" /> */}
                 {hotMangaList.map((item, index) => (
                     <div className="hotManga" key={index}>
-                        <img src={item.thumbnail} alt={item.title} />
+                        <img onClick={() => clickManga(item.mangaLink)} src={item.thumbnail} alt={item.title} />
                         <button onClick={() => clickManga(item.mangaLink)}>{item.title}</button>
                     </div>
                 ))}
