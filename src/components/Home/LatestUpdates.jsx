@@ -17,9 +17,10 @@ function LatestUpdates() {
                     <div className="manga">
                         <img src={item.img}></img>
                         <div className="description">
-                            <h3>{item.title}</h3>
+                            <h3 className="manga_title">{item.title}</h3>
                             <h5>{item.chapter}</h5>
                             <h5>{item.uploadTime}</h5>
+                            
                             <button class="read_more">Read More</button>
 
                         </div>
