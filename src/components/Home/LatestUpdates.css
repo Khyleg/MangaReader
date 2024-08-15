@@ -17,13 +17,27 @@
     color:#DDDDDD;
     font-weight: 500;
 
-    img {
-        height:100px;
-    }
     .description {
         align-content: center;
         margin-left: 3px;
     }
     display:flex;
     border: 1px solid white;
+ }
+ .Latest-Manga .manga img{
+    width:100px;
+    height:120px;
+ }
+
+ .Latest-Manga .description .read_more{
+    color:white;
+    background-color: transparent;
+    border:1px solid white;
+    border-radius: 5px;
+    padding:5px 25px 5px 25px;
+    font-size: 15px;
+ }
+ .Latest-Manga .description .read_more:hover{
+    color:red;
+    border-color: red;
  }
