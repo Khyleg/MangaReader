@@ -1,3 +1,54 @@
-.ViewManga-Row-1 {
+.ViewManga .manga {
+    background-color: #252525;
+    margin:0px 100px 0px 100px;
+    padding:20px;
+
+}
+.ViewManga .ViewManga-Row-1 {
     display:flex;
+    gap:20px;
+    height:300px;
+}
+.ViewManga .ViewManga-Row-1 .manga_title{
+    color:white;
+}
+.ViewManga .manga .manga_chapters .manga_chapter{
+    .chapter_date{
+        color:#A2A2A2;
+        font-size: 11px;
+    }
+    color:white;
+    border:1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    padding:8px 0px 8px 16px;
+    margin-top: 15px;
+}
+.ViewManga .manga .manga_chapters .manga_chapter:hover {
+    background-color: #1a1a1a;
+}
+.ViewManga .manga .manga_chapters .manga_chapter:hover .chapter_title{
+    color:red;
+}
+
+.ViewManga .ViewManga-Row-1 .manga_description {
+    overflow: hidden    ;
+    color:white;
+}
+.ViewManga .ViewManga-Row-1 img{
+    width: 190px;
+    height:300px;
+}
+
+.ViewManga .read_now{
+    margin-top: 5px;
+    padding:10px;
+    border-radius: 5px;
+    color:white;
+    background-color: #920031;
+    font-family:'Poppins', sans-serif;
+    border:0px;
+    font-weight: 600;
+}
+.ViewManga .read_now:hover{
+    background-color: #ff0055;
 }

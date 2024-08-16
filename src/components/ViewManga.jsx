@@ -17,39 +17,47 @@ function ViewManga() {
           .catch(error => console.error('Error fetching data:', error));
       }, []);
     return(
-        <>
-            <div className="ViewManga-Row-1">
-                {manga.thumbnail ? (
-                    <img src={manga.thumbnail} alt="Manga Thumbnail" />
-                ) : (
-                    <p>Loading thumbnail</p>
-                )
-                }
-                <div>
-                    {Array.isArray(manga.description) && manga.description.length > 0 ? (
-                            manga.description.map((item, index) => (
-                                <p key={index}>{item}</p>
-                            ))
-                        ) : (
-                            <p>Loading description...</p>
-                        )}
-                        {/* {manga.description.map((item, index) => (
-                            <p>{item}</p>
-                        ))} */
+        <div className="ViewManga">
+            <div className="manga">
+                <div className="ViewManga-Row-1">
+                    {manga.thumbnail ? (
+                        <img src={manga.thumbnail} alt="Manga Thumbnail" />
+                    ) : (
+                        <p>Loading thumbnail</p>
+                    )
                     }
+                    <div className="manga_description">
+                        <h2 className="manga_title">{manga.title}</h2>
+                        {Array.isArray(manga.description) && manga.description.length > 0 ? (
+                                manga.description.map((item, index) => (
+                                    <p key={index}>{item}</p>
+                                ))
+                            ) : (
+                                <p>Loading description...</p>
+                            )}
+                            {/* {manga.description.map((item, index) => (
+                                <p>{item}</p>
+                            ))} */
+                        }
+                    </div>
                 </div>
-            </div>
+            <button className="read_now">Read Now</button>
+            <div className="manga_chapters">
             {
-                Array.isArray(manga.chapters) && manga.chapters.length > 1 ? (
-                    
+                Array.isArray(manga.chapters) && manga.chapters.length > 0 ? (
                     manga.chapters.map((item, index) => (
-                        <p>{item}</p>
+                        <div className="manga_chapter">
+                            <h5 className="chapter_title">{item}</h5>
+                            <p className="chapter_date">{manga.chapters_date[index]}</p>
+                        </div>
                     ))
                 ) : (
                     <p>Loading Chapters</p>
                 )
             }
-        </>
+            </div>
+            </div>
+        </div>
     );
 }
 export default ViewManga;
