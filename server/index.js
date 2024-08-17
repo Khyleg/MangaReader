@@ -111,6 +111,7 @@ app.get("/scrapemanga", async(req, res) => {
             const thumbnail = document.querySelector(".img-fluid.bottom-5");
             const manga_chapters = [];
             const manga_chapters_date = [];
+            const manga_chapters_link = [];
             const descriptionContainer = [];
             manga.thumbnail += thumbnail.getAttribute("src")
             manga.title = title.querySelector("h1").innerText;
@@ -122,9 +123,11 @@ app.get("/scrapemanga", async(req, res) => {
             chapters.forEach((item, index) => {
                 manga_chapters.push(item.querySelector(".ng-binding").innerText);
                 manga_chapters_date.push(item.querySelector(".float-right.d-none.d-md-inline.ng-binding").innerText);
+                manga_chapters_link.push(item.getAttribute("href"));
             });
             manga.chapters = manga_chapters;
             manga.chapters_date = manga_chapters_date;
+            manga.chapters_link = manga_chapters_link;
             return manga
         })
 
@@ -139,6 +142,33 @@ app.get("/scrapemanga", async(req, res) => {
         if (page) await page.close();  // Ensure page is closed
     }
 })
+
+app.get('/scrapechapter', async(req, res) =>
+{
+    let page;
+    try{
+        const mangaUrl = "https://manga4life.com/read-online/" + req.query.path;
+        page = await newPagePuppeteer();
+        await page.goto(mangaUrl, { waitUntil: 'networkidle2' });
+        await page.waitForSelector('.ImageGallery', { visible: true });
+        const chapterImages = await page.evaluate(() => {
+            // Select the container element with class "ImageGallery"
+            const ngSrc = document.querySelector(".ImageGallery");
+            const ng_src = ngSrc.querySelectorAll(".ng-scope");
+            const images = [];
+            ng_src.forEach((item, index) => {
+                const imagesSrc = item.querySelector('img').getAttribute('src');
+                images.push(imagesSrc);            })
+            return images;
+        });
+        res.json(chapterImages);
+
+    }
+    catch(error) {
+        console.error("Error : ", error);
+        res.error(error);   
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);

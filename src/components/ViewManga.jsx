@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import "./ViewManga.css";
+
 function ViewManga() {
-    console.log("yikes");
+    const navigate = useNavigate();
     const params = useParams();
     console.log(params.mangaurl);
     const [manga, setManga] = useState([]);
@@ -16,6 +18,15 @@ function ViewManga() {
           })
           .catch(error => console.error('Error fetching data:', error));
       }, []);
+    const ClickChapter = (chapter) => {
+        console.log("Chapter Link: ", chapter);
+        const lastPageIndex = chapter.lastIndexOf('-page');
+        if(lastPageIndex !== -1) {
+            const manga_chapter = chapter.slice(0, lastPageIndex) + '.html';
+            navigate(`/chapter${manga_chapter}`);
+        }
+    }
+    
     return(
         <div className="ViewManga">
             <div className="manga">
@@ -47,7 +58,7 @@ function ViewManga() {
                 Array.isArray(manga.chapters) && manga.chapters.length > 0 ? (
                     manga.chapters.map((item, index) => (
                         <div className="manga_chapter">
-                            <h5 className="chapter_title">{item}</h5>
+                            <h5 onClick={() => ClickChapter(manga.chapters_link[index])} className="chapter_title">{item}</h5>
                             <p className="chapter_date">{manga.chapters_date[index]}</p>
                         </div>
                     ))
