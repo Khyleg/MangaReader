@@ -1,0 +1,15 @@
+.ViewChapter .chapter-pages {
+
+    text-align: center;
+}
+
+.ViewChapter .chapter-selection{
+    button {
+        background-color: #913FE2;;
+        border-radius:15px;
+    }
+    display:flex;
+    justify-content: space-between;
+    margin-left:195px;
+    margin-right: 195px;
+}

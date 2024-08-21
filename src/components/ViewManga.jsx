@@ -20,10 +20,11 @@ function ViewManga() {
       }, []);
     const ClickChapter = (chapter) => {
         console.log("Chapter Link: ", chapter);
+        const chapters = manga.chapters;
         const lastPageIndex = chapter.lastIndexOf('-page');
         if(lastPageIndex !== -1) {
             const manga_chapter = chapter.slice(0, lastPageIndex) + '.html';
-            navigate(`/chapter${manga_chapter}`);
+            navigate(`/chapter${manga_chapter}`, { state: {chapters: chapters}});
         }
     }
     
