@@ -19,12 +19,11 @@ function ViewManga() {
           .catch(error => console.error('Error fetching data:', error));
       }, []);
     const ClickChapter = (chapter) => {
-        console.log("Chapter Link: ", chapter);
         const chapters = manga.chapters;
         const lastPageIndex = chapter.lastIndexOf('-page');
         if(lastPageIndex !== -1) {
             const manga_chapter = chapter.slice(0, lastPageIndex) + '.html';
-            navigate(`/chapter${manga_chapter}`, { state: {chapters: chapters}});
+            navigate(`/chapter${manga_chapter}`, { state: {chapters: chapters, chaptersLink: manga.chapters_link}});
         }
     }
     

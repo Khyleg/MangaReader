@@ -6,10 +6,17 @@
 .ViewChapter .chapter-selection{
     button {
         background-color: #913FE2;;
+        color:white;
         border-radius:15px;
+        border-color: transparent;
+        padding:5px 15px 5px 15px;
+        margin-left: 10px;
+    }
+    button:hover {
+        background-color: #5d00b9   
     }
     display:flex;
     justify-content: space-between;
-    margin-left:195px;
-    margin-right: 195px;
+    margin-left:35px;
+    margin-right: 35px;
 }
